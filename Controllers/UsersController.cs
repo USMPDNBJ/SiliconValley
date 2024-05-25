@@ -46,6 +46,23 @@ namespace SiliconValley.Controllers
             
             return View(user);
         }
+        public IActionResult Registro()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Registro(Users newUser)
+        {
+            if (ModelState.IsValid)
+            {
+                ViewData["msj"]=await _integracion.CreateUser(newUser);
+                return View();
+            }
+
+            return View();
+        }
     
     }
 }
