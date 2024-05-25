@@ -38,6 +38,14 @@ namespace SiliconValley.Controllers
             return View("Error!");
         }
 
+        public async Task<IActionResult> Details(int? id)
+        {
+
+
+            Users ?user = await _integracion.GetUserById(id);
+            
+            return View(user);
+        }
     
     }
 }
