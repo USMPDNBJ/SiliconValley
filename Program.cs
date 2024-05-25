@@ -1,7 +1,11 @@
+using SiliconValley.Integration.Regres;
+using Microsoft.Extensions.Logging;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<RegresApiIntegration,RegresApiIntegration >();
 
 var app = builder.Build();
 

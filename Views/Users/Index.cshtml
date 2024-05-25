@@ -1,0 +1,54 @@
+@model IEnumerable<SiliconValley.Integration.Regres.dto.Users>
+
+@{
+    ViewData["Title"] = "USUARIOS";
+}
+
+
+<div class="navi"></div>
+<div class="navi"></div>
+<div class="container">
+
+    <h1 style="text-align: center;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">USUARIOS </h1>
+    <h2 style="text-align: center;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">"Click sobre el usuario para más detalles"</h2>
+ <div class="row justify-content-center">
+    <table class="table table-hover" style="width: 100px;">
+        <thead>
+            <tr>
+                <th >
+                    @Html.DisplayNameFor(model => model.id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.email)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {                
+                    <tr class="table-row" data-id="@item.id">
+                            <td >
+                                @Html.DisplayFor(modelItem => item.id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.email)
+                            </td>      
+                    </tr>
+                
+            }
+        </tbody>
+    </table>
+</div>   
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var rows = document.querySelectorAll('.table-row');
+        rows.forEach(function(row) {
+            row.addEventListener('click', function() {
+                var userId = this.getAttribute('data-id');
+                window.location.href = '/Users/Details/' + userId; // Reemplaza 'ControllerName' con el nombre de tu controlador
+            });
+        });
+    });
+</script>
