@@ -40,5 +40,28 @@ namespace SiliconValley.Integration.Regres
             }
             return listUsers;
         }
+        public async Task<Users?> GetUserById(int? userId)
+            {
+                string requestUrl = $"{API_URL}/{userId}"; // Modifica la URL para incluir el ID del usuario
+                Users? user = null;
+                using (HttpClient client = new HttpClient())
+                {
+                    try
+                    {
+                        HttpResponseMessage response = await client.GetAsync(requestUrl);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var json = await response.Content.ReadAsStringAsync();
+                            var jsonObject = JObject.Parse(json);
+                            user = jsonObject["data"].ToObject<Users>(); // Asumiendo que el objeto JSON representa un solo usuario
+                        }
+                    }
+                    catch (HttpRequestException ex)
+                    {
+                        _logger.LogDebug($"Error al llamar a la API: {ex.Message}");
+                    }
+                }
+                return user;
+            }
     }
 }

@@ -1,0 +1,51 @@
+@model SiliconValley.Integration.Regres.dto.Users
+
+@{
+    ViewData["Title"] = "DETALLES";
+}
+<div class="navi"></div>
+<div class="navi"></div>
+<div class="container ">
+    <h1 class="text-center">DETALLES DEL USUARIO</h1>
+
+        
+        <hr />
+    <div style="margin-left: 500px;">
+        <dl class="row ">
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.id)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.id)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.email)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.email)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.first_name)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.first_name)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.last_name)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.last_name)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.avatar)
+            </dt>
+            <dd class = "col-sm-10">
+                <img src="@Html.DisplayFor(model => model.avatar)" class="d-block image-fit ">                                        
+            </dd>
+        </dl>
+        <div>
+        <a style="margin-left: 100px;" class="btn btn-dark" asp-action="Index">Regresar</a>
+    </div>
+    </div>
+    
+</div>
