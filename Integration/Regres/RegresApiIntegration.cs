@@ -63,5 +63,41 @@ namespace SiliconValley.Integration.Regres
                 }
                 return user;
             }
+            public async Task<String> CreateUser(Users newUser)
+        {
+                String? msj="";
+
+                using (HttpClient client = new HttpClient())
+                {
+                    try
+                    {
+                        var jsonContent = JsonConvert.SerializeObject(newUser);
+                        var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                        HttpResponseMessage response = await client.PostAsync(API_URL, content);
+
+                        if (response.IsSuccessStatusCode)
+                        {
+                            
+                            _logger.LogInformation($"USUARIO CREADO: {response}");
+                            msj="USUARIO CREADOㅤㅤㅤㅤㅤㅤㅤㅤ"+response;
+                        }
+                        else
+                        {
+
+                            string responseContent = await response.Content.ReadAsStringAsync();
+                            _logger.LogError($"Error al crear el usuario: {responseContent}");
+                            msj=$"ERROR:{responseContent}";
+                        }
+                        
+                    }
+                    catch (HttpRequestException ex)
+                    {
+                        _logger.LogDebug($"Error al llamar a la API: {ex.Message}");
+                    }
+                }
+                return msj;
+
+        }
     }
 }
